@@ -1,0 +1,82 @@
+{% extends "minutes/lite_2.html" %}
+
+{% block content %}
+
+{% if Meeting_list %}
+
+<br>
+<h1>{{Meeting_name}}</h1>
+{% for meeting in Meeting_list %}
+	<table class="table table-condensed table-bordered table-hover">
+		<tr class="info" style = "white-space: 0">
+			<th class = "align col-md-1">Sr no.</th>
+			<th class = "align">Date</th>
+			<th class = "align">Meeting Name</th>
+		    <th class = "align">Attendees</th>
+		    <th class = "align">Deliverables</th>
+		</tr>
+		<tr>
+			<td class = "align" style="width: 40px">{{forloop.counter}}</td>
+		    <td style="width: 40px">{{meeting.date|date:"d/m/Y"}}</td>
+		    <td style="text-align: center;">{{meeting.Issue}}</td>
+		    <td style="text-align: center;">{{meeting.Attendees}}</td>
+		    <td style="text-align: center;">{{meeting.Deliverables}}</td>
+		</tr>
+		<tr>
+			<table class="table table-condensed table-bordered table-hover">
+				<tr class="warning" >
+				    <th class = "align">Sr</th>
+				    <th class = "align">Topic</th>
+				    <th class = "align">Details</th>
+				    <th class = "align">Action_Owner</th>
+				    <th class = "align">Status</th>
+				    <th class = "align">Close Date</th>
+				</tr>
+
+				{% for action in meeting.action_set.all %}
+					{% if action.Topic_Status.Status == 'Open' or action.Topic_Status.Status == 'open'%}
+			    		<tr class="danger">
+						<td class = "align" style="width: 40px">{{forloop.counter}}</td>
+			    			<td class="col-md-2">{{action.Topic}}</td>
+			    			<td>{{action.Details|linebreaks }}</td>
+			    			<td class="col-md-2 align">{{action.Action_Owner}}</td>
+			    			<td class="col-md-1 align">{{action.Topic_Status.Status}}</td>
+			    			<td class="col-md-1	 align">{{action.close_date}}</td>
+			    		</tr>
+			    	{% endif %}
+	    		{% endfor %} 
+				{% for action in meeting.action_set.all %}
+					{% if action.Topic_Status.Status == 'Close' or action.Topic_Status.Status == 'close' %}
+			    		<tr class="success">
+						<td class = "align" style="width: 40px">{{forloop.counter}}</td>
+			    			<td class="col-md-2">{{action.Topic}}</td>
+			    			<td>{{action.Details|linebreaks }}</td>
+			    			<td class="col-md-2 align">{{action.Action_Owner}}</td>
+			    			<td class="col-md-1 align">{{action.Topic_Status.Status}}</td>
+			    			<td class="col-md-1	 align">{{action.close_date}}</td>
+			    		</tr>
+			    	{% endif %} 
+			    {% endfor %}
+			    {% for action in meeting.action_set.all %}
+					{% if action.Topic_Status.Status == 'Cancel' or action.Topic_Status.Status == 'cancel' %}
+			    		<tr class="success">
+						<td class = "align" style="width: 40px">{{forloop.counter}}</td>
+			    			<td class="col-md-2">{{action.Topic}}</td>
+			    			<td>{{action.Details|linebreaks }}</td>
+			    			<td class="col-md-2 align">{{action.Action_Owner}}</td>
+			    			<td class="col-md-1 align">{{action.Topic_Status.Status}}</td>
+			    			<td class="col-md-1	 align">{{action.close_date}}</td>
+			    		</tr>
+			    	{% endif %} 
+			    {% endfor %}
+			</table>
+		</tr>
+	</table>
+{% endfor %}
+{% else %}
+    <p>No meetings available are available.</p>
+
+{% endif %}
+
+
+{% endblock %}

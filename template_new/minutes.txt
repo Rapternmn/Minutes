@@ -1,0 +1,39 @@
+
+
+# upload_minutes.pl <minutes.txt> -deliverable liberty \
+#   -pnbDir .../msl900_hpa9/project_nb/minutes/r1.0.0 -owner X0222033
+
+[deliverable] Liberty
+[meeting_title] Meeting one
+[attendees] Shara, Prashanth, Nagesh
+[meeting_date] 2016-07-26
+
+[Title] PMOS & NMOS Devices used
+
+[Details]
+PCH_7V info 
+---------------------
+
+
+* Contents:
+*
+*          Model           |    Wmin  Wdrawn    Wmax  |    Lmin  Ldrawn    Lmax
+* -------------------------+--------------------------+-------------------------
+* PCH_7V_LBC7              |   0.74     na      na  |   1.23     na      na
+*
+*          Model           |  TEMPmin     Tnom  TEMPmax
+* -------------------------+----------------------------
+* PCH_7V_LBC7              |      -55       27      150
+*
+*          Model           |  VDSmax  VGSmax  VBSmax  VGBmax  VBDmax
+* -------------------------+-----------------------------------------
+* PCH_7V_LBC7              |    -7.7    -7.7     7.7   -15.4     7.7
+*
+
+NCH_7V info
+
+[Title] Reviewed and approved for release
+[Details] Subject to closure of the above items
+[status] open
+[owner] Shara
+
